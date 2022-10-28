@@ -1,0 +1,15 @@
+@import './common';
+@import './utils/vars';
+@import './base/reset';
+@import './base/general';
+@import './utils/visually-hidden';
+@import './utils/mixins';
+
+@import './components/container';
+@import './components/modals';
+@import './base/main';
+@import './base/header';
+@import './base/headerMyLib';
+@import './base/footer';
+@import './components/modal';
+@import './components/movieDescription';
