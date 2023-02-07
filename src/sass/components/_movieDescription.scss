@@ -1,31 +1,57 @@
 .movie__description {
-  @media screen and (min-width: 768px) {
+  @include tablet {
     display: flex;
   }
 }
 
+.movie__poster {
+  box-shadow: 3px 8px 9px 3px rgba(0, 0, 0, 0.32);
+}
+
 .movie__poster-wrappaer {
-  @media screen and (max-width: 767px) {
+  position: relative;
+
+  @include tablet-close {
     margin-bottom: 20px;
   }
 
-  @media screen and (min-width: 768px) {
-    margin-right: 68px;
-    width: 264px;
+  @include tablet {
+    // width: 264px;
   }
 
-  @media screen and (min-width: 1024px) {
-    margin-right: 16px;
-    width: 325px;
+  @include tablet-plus {
+    // width: 375px;
+    height: 478px;
   }
 }
 
 .movie__poster {
-  height: 380px;
+  width: 240px;
+  height: auto;
+
+  @media screen and (min-width: 375px) {
+    width: 100%;
+  }
+
+  @include tablet {
+    width: 264px;
+    height: 373.55px;
+  }
+  @include tablet-plus {
+    width: auto;
+    height: 478px;
+  }
 }
 
-// .movie__container {
-// }
+.movie__container {
+  @include tablet {
+    margin-left: 68px;
+  }
+
+  @include tablet-plus {
+    margin-left: 16px;
+  }
+}
 
 .movie__title {
   margin-bottom: 20px;
@@ -37,9 +63,7 @@
   line-height: 1.15;
   text-transform: uppercase;
 
-  color: #000000;
-
-  @media screen and (min-width: 1024px) {
+  @include tablet-plus {
     font-size: 30px;
   }
 }
@@ -47,19 +71,18 @@
 .description__container {
   display: flex;
   margin-bottom: 20px;
-  height: 88px;
 }
 
-.description__title-wrapper {
-  width: 70px;
-  margin-right: 40px;
+.description__text-wrapper {
+  margin-left: 41px;
 }
 
 .description__title {
   &:not(:last-child) {
     margin-bottom: 8px;
   }
-
+  width: 69px;
+  height: 16px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -70,30 +93,32 @@
 }
 
 .description__text {
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
+  display: flex;
+  align-items: center;
 
+  &:not(:last-child) {
+    margin-bottom: 9px;
+  }
+  height: 16px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+}
+.description__popularity {
+  height: 14px;
 }
 
 .vote {
   padding: 1px 10px;
+  height: 16px;
 }
 
 .vote-accent {
   background-color: #ff6b01;
   border-radius: 5px;
-  color: #ffffff;
+  color: $color-white;
   display: inline-block;
   margin-right: 4px;
 }
@@ -108,40 +133,41 @@
   line-height: 1.333;
 
   text-transform: uppercase;
-
-  color: #000000;
 }
 
 .about__text {
-  margin-bottom: 20px;
+  overflow-y: auto;
 
+  margin-bottom: 20px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
+  max-height: 120px;
 
-  color: #000000;
-
-  @media screen and (min-width: 768px) {
+  @include tablet {
     width: 264px;
+    max-height: 140px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include tablet-plus {
     width: 391px;
+    max-height: 180px;
   }
 }
-
 .btn__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
-  @media screen and (min-width: 768px) {
-    width: 264px;
+  @include tablet {
+    width: 265px;
+    justify-content: space-between;
   }
 
-  @media screen and (min-width: 1024px) {
-    width: 287px;
+  @include tablet-plus {
+    width: 295px;
+    justify-content: space-around;
   }
 }
 
@@ -152,9 +178,8 @@
   padding-bottom: 6px;
 
   border-radius: 5px;
-  border: 1px solid #000000;
-
-  //   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border: 1px solid $color-main-text;
+  box-shadow: 3px 8px 9px 3px rgba(0, 0, 0, 0.32);
 
   font-family: 'Roboto';
   font-style: normal;
@@ -164,22 +189,137 @@
   text-align: center;
   text-transform: uppercase;
 
-  color: #000000;
+  color: $color-main-text;
 
   transition: all 250ms linear;
+
+  // &:last-child {
+  //   margin-left: 20px;
+  // }
 
   &:hover,
   &:focus {
     background: #ff6b01;
     border: 1px solid #ff6b01;
-    color: #ffffff;
+    color: $color-white;
   }
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     width: 125px;
+
+    &:last-child {
+      margin-left: 15px;
+    }
   }
 
-  @media screen and (min-width: 1024px) {
+  @include tablet-plus {
     width: 136px;
   }
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  stroke-width: 3px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  stroke: $color-main-text;
+  transition: stroke 300ms $timing-function;
+
+  &:hover,
+  &:focus {
+    stroke: $color-accent;
+  }
+}
+.modal-content.dark .modal__close {
+  stroke: $color-white;
+  transition: fill 300ms $timing-function, stroke 300ms $timing-function;
+}
+.modal-content.dark .modal__close:hover,
+.modal-content.dark .modal__close:focus {
+  stroke: $color-accent;
+}
+
+.youtube {
+  position: absolute;
+  top: 55px;
+  left: 25px;
+  width: 43px;
+  height: 30px;
+  text-align: center;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  transition: all 0.25s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 250ms linear;
+  @include tablet {
+    top: 50px;
+    left: 45px;
+  }
+  @include tablet-plus {
+    top: 50px;
+    left: 25px;
+  }
+}
+
+.icon-youtube {
+  fill: transparent;
+  stroke: transparent;
+}
+
+.icon-youtube__enable {
+  fill: #ff0000;
+  stroke: #ff0000;
+  transition: all 250ms linear;
+  &:hover,
+  &focus {
+    fill: #b80000;
+    stroke: #b80000;
+  }
+}
+
+.icon-youtube__disabled {
+  fill: #808080;
+  stroke: #000000;
+}
+
+.message-wrap {
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-cast {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms linear;
+  fill: #ff0000;
+  stroke: #000000;
+  &:hover,
+  &:focus {
+    fill: #b80000;
+    stroke: #000000;
+  }
+}
+
+.btn-cast-text {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-weight: 700;
+  font-size: 13px;
 }
